@@ -1,7 +1,7 @@
 
 var getRequest = function(val) {
 
-
+  console.log(val);
 	var phrase = val,
 		key = '3ed40dc640c04223adba52fddb235425',
 		capitolWordsAPI = 'http://capitolwords.org/api/1/dates.json',
@@ -17,10 +17,36 @@ var getRequest = function(val) {
 
 
 	$.get(requestURI, function( data ) {
-		console.log(data.results);
+    var arr = [['year', 'occurances']];
+    data.results.forEach(function(obj){
+      arr.push([obj.year, obj.count]);
+    });
+    google.load('visualization', '1', {packages: ['corechart', 'bar']});
+    google.setOnLoadCallback(drawMaterial);
+      console.log(arr);
 
+    function drawMaterial() { 
+      
+      var data = google.visualization.arrayToDataTable(arr);
+      var options = {
+        chart: {
+          title: "Frequency of " + val + " in Congress by year"
+        },
+        hAxis: {
+          title: 'Number of Occurances',
+          minValue: 0,
+        },
+        vAxis: {
+          title: 'Year'
+        },
+        bars: 'horizontal'
+      };
+      var material = new google.charts.Bar(document.getElementById('chart_div'));
 
-
+      console.log(data);
+      console.log(options);
+      material.draw(data, options);
+    }
 
 
 
@@ -51,12 +77,11 @@ function drawMaterial() {
           title: 'City'
         },
         bars: 'horizontal'
-      };
       var material = new google.charts.Bar(document.getElementById('chart_div'));
       material.draw(data, options);
     }
 */
-    
+
 	});
 
 };
