@@ -1,16 +1,25 @@
 (function($){
 
-	var key = '3ed40dc640c04223adba52fddb235425',
-		capitolWordsAPI = 'http://capitolwords.org/api/1/dates.json',
-		phrase = "United States";
 
-	phrase = phrase.replace(/\s/, '+');
+	$('#input').on('click', function(event){
 
-	var requestURI = capitolWordsAPI + '?phrase=' + phrase + '&' + 'apikey=' + key;
+		var phrase = $('#input').val();
+			key = '3ed40dc640c04223adba52fddb235425',
+			capitolWordsAPI = 'http://capitolwords.org/api/1/dates.json',
+			startDate = '1995',
+			granularity = 'years';
 
-	$.get(requestURI, function( data ) {
+		phrase = phrase.replace(/\s/, '+');
 
-		// console.log(data);
+		var requestURI = capitolWordsAPI + '?phrase=' + phrase 
+							+ '&' + 'start_date=' + startDate
+							+ '&' + 'granularity=' + granularity
+							+ '&' + 'apikey=' + key;
+
+
+		$.get(requestURI, function( data ) {
+			console.log(data.results);
+		});
 
 	});
 
@@ -53,6 +62,7 @@ $(function(){
   });
 });
 
+
 /*
 google.load('visualization', '1', {packages: ['corechart', 'bar']});
 google.setOnLoadCallback(drawMaterial);
@@ -84,3 +94,4 @@ function drawMaterial() {
       material.draw(data, options);
     }
 */
+
