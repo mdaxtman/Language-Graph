@@ -10,8 +10,45 @@
 
 	$.get(requestURI, function( data ) {
 
-		console.log(data);
+		// console.log(data);
 
 	});
 
 })(jQuery, undefined);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//mike's work
+$(function(){
+  var $button = $('#button');
+  var $input = $('#input');
+  $button.on('click', function() {
+    var value = $input.val();
+    $input.val('');
+    console.log(value);
+  });
+});
