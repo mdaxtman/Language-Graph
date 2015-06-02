@@ -1,26 +1,22 @@
 (function($){
 
 
-	$('#input').on('click', function(event){
+	var phrase = 'united states';
+		key = '3ed40dc640c04223adba52fddb235425',
+		capitolWordsAPI = 'http://capitolwords.org/api/1/dates.json',
+		startDate = '1995',
+		granularity = 'years';
 
-		var phrase = $('#input').val();
-			key = '3ed40dc640c04223adba52fddb235425',
-			capitolWordsAPI = 'http://capitolwords.org/api/1/dates.json',
-			startDate = '1995',
-			granularity = 'years';
+	phrase = phrase.replace(/\s/, '+');
 
-		phrase = phrase.replace(/\s/, '+');
-
-		var requestURI = capitolWordsAPI + '?phrase=' + phrase 
-							+ '&' + 'start_date=' + startDate
-							+ '&' + 'granularity=' + granularity
-							+ '&' + 'apikey=' + key;
+	var requestURI = capitolWordsAPI + '?phrase=' + phrase 
+						+ '&' + 'start_date=' + startDate
+						+ '&' + 'granularity=' + granularity
+						+ '&' + 'apikey=' + key;
 
 
-		$.get(requestURI, function( data ) {
-			console.log(data.results);
-		});
-
+	$.get(requestURI, function( data ) {
+		console.log(data.results);
 	});
 
 })(jQuery, undefined);
